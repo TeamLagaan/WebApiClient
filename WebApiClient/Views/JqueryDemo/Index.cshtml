@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btngetData").click(function () {
+            $.ajax({
+                type: "Post",
+                url: "https://localhost:44366/api/Db",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data)
+                {
+                    alert(data.d.length);
+                },
+                error: function (xhr, err)
+                {
+                    alert("readystate" + xhr.readyState);
+                    alert("ResponseText" + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    <input type="submit" id="btngetData" value="Getdata"/>
+    <table id="tbldata">
+
+    </table>
+}
